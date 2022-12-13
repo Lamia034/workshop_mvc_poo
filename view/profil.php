@@ -1,97 +1,45 @@
+<?php
+$data = new ProductController();
+$products = $data->getAllProducts();
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Travigo - Travel for everyone</title>
-	<meta name="description" content="travelling siteweb that assure you a safe tour all over the world">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+?>
 
-	<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<div class="container mt-3">
+   <?php include "./views/includes/alerts.php" ?>
+   <a href="<?php echo BASE_URL;?>add" class="btn btn-primary">ADD</a>
+   <a href="<?php echo BASE_URL;?>home" class="btn btn-danger">LOG OUT</a>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-</head>
-    <body>
-        <div > 
-            <header class >
-                <a href="#" id="logo"><img src="img/logo.png" class="logo-img" alt="travelling"></a>
-                <div class="bx bx-menu" id="menu-icon"></div>
+    <table class="table">
+        <thead>
+            <th>image</th>
+            <th>destination</th>
+            <th>price</th>
+            <th>description</th>
+            <th>action</th>
+        </thead>
+        <tbody>
+            <?php foreach($products as $product):?>
+            <tr>
+                <td><img src="uploads/<?php echo $product['image'];?>"></td>
+                <td><?php echo $product['ProductName'];?></td>
+                <td><?php echo $product['Price'];?></td>
+                <td><?php echo $product['ProductDesc'];?></td>
                 
-
-				<ul class="navbar">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="tours.html">Tours</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact Us</a></li>
-				</ul>
-            </header>
-
-
-            <section class="up-profil">
-				<p>admin's infos</p>
-</section>
-			
-			<div>
-				<h2 style="text-align:center;">your products</h2>
-			</div>
-				
-
-<section id="contact">
-		<div class="footer">
-			<div class="main">
-				<div class="list">
-					<h4>Quick Links</h4>
-					<ul>
-						<li><a href="#">About us</a></li>
-						<li><a href="#">Terms & Conditions</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Help</a></li>
-						<li><a href="#">Tours</a></li>
-					</ul>
-				</div>
-
-				<div class="list">
-					<h4>Support</h4>
-					<ul>
-						<li><a href="#">About us</a></li>
-						<li><a href="#">Terms & Conditions</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Help</a></li>
-						<li><a href="#">Tour</a></li>
-					</ul>
-				</div>
-
-				<div class="list">
-					<h4>Contact Info</h4>
-					<ul>
-						<li><a href="#">98 West 21th Street</a></li>
-						<li><a href="#">New York NY 10016</a></li>
-						<li><a href="#">+(123)-123-1234</a></li>
-						<li><a href="#">info@travigo.com</a></li>
-						<li><a href="#">+(123)-123-1234</a></li>
-					</ul>
-				</div>
-
-				<div class="list">
-					<h4>Connect</h4>
-					<div class="social">
-						<a href="#"><i class='bx bxl-facebook' ></i></a>
-						<a href="#"><i class='bx bxl-instagram-alt' ></i></a>
-						<a href="#"><i class='bx bxl-twitter' ></i></a>
-						<a href="#"><i class='bx bxl-linkedin' ></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="end-text">
-			<p>Copyright©2022 All rights reserved | Travigo</p>
-		</div>
-	</section>
-	<script type="text/javascript" src="js/script.js"></script>
-    </body>
-</html>
+                
+                <td class="d-flex flex-row">
+                    <form method="POST" class="me-1" action="update">
+                        <input type="hidden" name="id" value="<?php echo $product['id'];?>">
+                        <button class="btn btn-sm btn-warning"><i class="fa fa-eidt"> edit</i></button>
+                        
+                    </form>
+                    <form method="POST" class="me-1" action="delete">
+                        <input type="hidden" name="id" value="<?php echo $product['id'];?>">
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash">delete</i></button>
+                    </form>
+                    
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

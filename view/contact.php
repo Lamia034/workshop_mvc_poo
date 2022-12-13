@@ -1,9 +1,3 @@
-<?php 
-	if(isset($_POST['submit'])){
-		$loginUser = new UserController();
-		$loginUser->auth();
-	}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +17,7 @@
     <body>
         <div class="bkg"> 
 		<header>
-		<a href="#" id="logo"><img src="img/logo.png" class="logo-img" alt="travelling"></a>
+		<a href="#" id="logo"><img src="logo.png" class="logo-img" alt="travelling"></a>
 		<div class="bx bx-menu" id="menu-icon"></div>
 
 		<ul class="navbar">
@@ -36,15 +30,24 @@
 	</header>
       
        <div> <h2 class="contacts">
-            Log In :
+             Contact Us Soon :
             </h2>
 		</div>
-		<form action="../view/login.php" class="form" method="post">
-        <input type="text" id="Email" name="Email" placeholder="Your email.."  ><br>
-        <input type="text" id="Password" name="Password" placeholder="Password.."  ><br>
-   		 <input type="submit" name="submit" class="submit1" value="login">
+		<form action="" class="form">
+    		<!--<input type="text" id="fname" name="firstname" placeholder="Your name.."><br>
+    		<input type="text" id="lname" name="lastname" placeholder="Your last name.."><br>-->
+		<div id="fname"><input type="text" id="fname" name="firstname" placeholder="Your name.." class="water" style="width:600px"></div>
+        <div><input type="text" id="fname" name="firstname" placeholder="Your email.." class="water" style="width:600px"></div>
+        <div><input type="text" id="fname" name="firstname" placeholder="Your phone number.." class="water" style="width:600px"></div>
+        <div><input type="text" id="fname" name="firstname" placeholder="Your suggestions.." class="water" style="width:600px"></div>
+   		 <div><input type="submit" value="submit" class="submit"></div>
 		</form>
 
+        <!-- <div class="stroke"><p class="water">Your name</p></div>
+        <div class="stroke"><p class="water">Your email</p></div>
+        <div class="stroke"><p class="water">Your phone number</p></div>
+        <div class="stroke"><p class="water">Your suggestions</p></div>
+    <div ><input type="submit" value="submit" class="submit"></div> -->
     </div>
     <section id="contact">
 		<div class="footer">
