@@ -12,11 +12,11 @@ class product {
 	}
 
 	static public function getProduct($data){
-		$id = $data['id'];
+		$idproduct = $data['idproduct'];
 		try{
-			$query = 'SELECT * FROM products WHERE id=:id';
+			$query = 'SELECT * FROM products WHERE idproduct=:idproduct';
 			$stmt = DB::connect()->prepare($query);
-			$stmt->execute(array(":id" => $id));
+			$stmt->execute(array(":idproduct" => $idproduct));
 			$product = $stmt->fetch(PDO::FETCH_OBJ);
 			return $product;
 		}catch(PDOException $ex){
@@ -25,11 +25,11 @@ class product {
 	}
 
 	static public function add($data){
-		$stmt = DB::connect()->prepare('INSERT INTO products (Img,ProductName,ProductPrice)
-			VALUES (:img,:productname,:productprice)');
-		$stmt->bindParam(':img',$data['Img']);
-		$stmt->bindParam(':productname',$data['ProductName']);
-		$stmt->bindParam(':productprice',$data['ProductPrice']);
+		$stmt = DB::connect()->prepare('INSERT INTO products (img,productname,productdesc,price)
+			VALUES (:img,:productname,:productdesc,:price)');
+		$stmt->bindParam(':img',$data['img']);
+		$stmt->bindParam(':productname',$data['productname']);
+		$stmt->bindParam(':price',$data['price']);
 
 		if($stmt->execute()){
 			return 'ok';
@@ -40,11 +40,12 @@ class product {
 		$stmt = null;
 	}
 	static public function update($data){
-		$stmt = DB::connect()->prepare('UPDATE products SET Img=:img,ProductName=:productname,ProductPrice=:productprice WHERE id=:id');
-		$stmt->bindParam(':id',$data['id']);
-		$stmt->bindParam(':img',$data['Img']);
-		$stmt->bindParam(':productname',$data['ProductName']);
-		$stmt->bindParam(':productprice',$data['ProductPrice']);
+		$stmt = DB::connect()->prepare('UPDATE products SET img=:img,productname=:productname,productdesc=productdesc,price=:price WHERE idproduct=:idproduct');
+		$stmt->bindParam(':idproduct',$data['idproduct']);
+		$stmt->bindParam(':img',$data['img']);
+		$stmt->bindParam(':productname',$data['productname']);
+		$stmt->bindParam(':productdesc',$data['productdesc']);
+		$stmt->bindParam(':price',$data['price']);
 		if($stmt->execute()){
 			return 'ok';
 		}else{

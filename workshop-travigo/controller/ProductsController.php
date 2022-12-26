@@ -1,17 +1,17 @@
 <?php 
 require_once '../model/product.php';
-
+require_once '../database/DB.php';
 class ProductController{
 
 	public function getAllProducts(){
-		$products = Product::getAll();
+		$products = product::getAll();
 		return $products;
 	}
 
 	public function getOneProduct(){
-		if(isset($_POST['id'])){
+		if(isset($_POST['idproduct'])){
 			$data = array(
-				'id' => $_POST['id']
+				'idproduct' => $_POST['idproduct']
 			);
 			$product = Product::getProduct($data);
 			return $product;
@@ -21,22 +21,22 @@ class ProductController{
 		if(isset($_POST['search'])){
 			$data = array('search' => $_POST['search']);
 		}
-		$products = Products::searchProduct($data);
+		$products = product::searchproducts($data);
 		return $products;
 	} 
+	
 
 	public function addProduct(){
 		if(isset($_POST['submit'])){
-			//  $imageNft = $_POST['imageNft'];
 			$data = array(
-				'img' => $_POST['Img'],
-				'productname' => $_POST['ProductName'],
-				'productprice' => $_POST['ProductPrice'],
+				'img' => $_POST['img'],
+				'productname' => $_POST['productname'],
+				'price' => $_POST['price'],
 			);
-			$result = Product::add($data);
+			$result = product::add($data);
 			if($result === 'ok'){
-				Session::set('success','Product added');
-				Redirect::to('home');
+				session::set('success','Product added');
+				Redirect::to('home.php');
 			}else{
 				echo $result;
 			}
@@ -44,18 +44,21 @@ class ProductController{
 	}
 
 	public function updateProduct(){
-		if(isset($_POST['submit'])){
-			$data = array(
-				'id' => $_POST['id'],
-				'img' => $_POST['Img'],
-				'productname' => $_POST['ProductName'],
-				'productprice' => $_POST['ProductPrice'],
-			);
-			$result = Product::update($data);
-			if($result === 'ok'){
-				Session::set('success','Product modified');
-				Redirect::to('profil');
-			}else{
+	
+			if(isset($_POST['submit'])){
+       $data = array(
+				'idproduct' => $_POST['idproduct'],
+				'productname' => $_POST['productname'],
+				'price' => $_POST['price'],
+				'productdesc' => $_POST['productdesc'],
+				'img' => $_POST['img'],
+	  			 );	
+				 $result = Product::update($data);
+				if($result === 'ok'){
+
+					session::set('success','modified');
+				  Redirect::to('home.php');
+				 }else{
 				echo $result;
 			}
 		}
@@ -66,7 +69,7 @@ class ProductController{
 			$result = Product::delete($data);
 			if($result === 'ok'){
 				Session::set('success','product deleted');
-				Redirect::to('home');
+				Redirect::to('home.php');
 			}else{
 				echo $result;
 			}
