@@ -1,12 +1,4 @@
-<?php 
-	if(isset($_POST['find'])){
-		$data = new ProductsController();
-		$products = $data->findProducts();
-	}else{
-		$data = new ProductsController();
-		$products = $data->getAllProducts();
-	}
-?>
+
 
 <!DOCTYPE html>
 <html>

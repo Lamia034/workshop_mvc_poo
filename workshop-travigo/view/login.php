@@ -1,8 +1,12 @@
-<?php 
-	if(isset($_POST['submit'])){
-		$loginUser = new UserController();
-		$loginUser->auth();
-	}
+<?php
+require_once('../controller/AdminController.php');
+
+if(isset($_POST['submit'])){
+    $loginAdmin = new AdminController();
+    $loginAdmin->auth();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,18 +38,18 @@
 			<li><a href="login.php">LogIn</a></li>
 		</ul>
 	</header>
-      
+	<div>
        <div> <h2 class="contacts">
             Log In :
             </h2>
 		</div>
 		<form action="../view/login.php" class="form" method="post">
-        <input type="text" id="Email" name="Email" placeholder="Your email.."  ><br>
-        <input type="text" id="Password" name="Password" placeholder="Password.."  ><br>
+        <input type="text" id="Email" name="email" placeholder="Your email.."  ><br>
+        <input type="text" id="Password" name="password" placeholder="Password.."  ><br>
    		 <input type="submit" name="submit" class="submit1" value="login">
 		</form>
 
-    </div>
+    </div> 
     <section id="contact">
 		<div class="footer">
 			<div class="main">

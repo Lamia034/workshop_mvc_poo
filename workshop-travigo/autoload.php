@@ -1,28 +1,29 @@
-<?php 
+<!-- solution pour ne pas  faire toujour  include  -->
+
+<?php
 
 session_start();
 require_once  "./bootstrap.php";
 
-define('BASE_URL','http://localhost/workshop-travigo/');
-
 spl_autoload_register('autoload');
 
 function autoload($class_name){
-	$array_paths = array(
-		'database/',
+
+    $array_paths = array(
         'app/classes/',
         'model/',
         'controller/'
-	);
+      );
+    $parts = explode('\\',$class_name);
+    $name = array_pop($parts);
+//    recupere dernier name dans pate
 
-	$parts = explode('\\',$class_name);
-	$name = array_pop($parts);
-
-	foreach($array_paths as $path){
-		$file = sprintf($path.'%s.php',$name);
-		if(is_file($file)){
-			include_once $file;
-		}
-	}
+    foreach($array_paths as $path){
+        $file = sprintf($path.'%s.php',$name);
+        if(is_file($file)){
+            include_once $file;
+        }
+    }
 
 }
+?>

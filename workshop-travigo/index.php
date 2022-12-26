@@ -1,30 +1,35 @@
-<?php 
-// require_once './view/includes/header.php';
+<?php
 require_once './autoload.php';
 require_once './controller/HomeController.php';
 
-
 $home = new HomeController();
 
-$user = ['add','update','delete','logout','login','profil'];
+$admin = ['add','update','delete','logout','dashboard','login'];
 
 $pages = ['home','about','tours','contact'];
 
 
 
-if(isset($_SESSION['logged']) && $_SESSION['logged'] === true){
+if (isset($_GET['page']) && in_array($_GET['page'],$admin)) {
 
-	if(isset($_GET['page'])){
-		if(in_array($_GET['page'],$pages)){
-			$page = $_GET['page'];
-			$home->index($page);
-		}else{
-			include('view/includes/404.php');
-		}
-	}else{
-		$home->index('home');
-	}
+  if (isset($_SESSION['logged']) && isset($_SESSION['logged']) === true) {
+    if ($_GET['page'] === "login") {
+      $home->index("dashboard");
+    } else {
+      $page = $_GET['page'];
+      $home->index($page);
+    }
+
+  }else{
+    $home->index('login');
+  }
+
+}else if(isset($_GET['page']) && in_array($_GET['page'],$pages)){
+      $page=$_GET['page'];
+      $home->index($page);
+}else if (!isset($_GET['page'])) {
+  $home->index('home');
+}else{
+  include('views/includes/404.php');
 }
 
-
-// require_once './views/includes/footer.php';

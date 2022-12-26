@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 12 déc. 2022 à 21:51
--- Version du serveur : 10.4.25-MariaDB
--- Version de PHP : 8.1.10
+-- Généré le : lun. 26 déc. 2022 à 01:04
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,47 +24,45 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `products`
+-- Structure de la table `admin`
 --
 
-CREATE TABLE `products` (
-  `Id` int(10) NOT NULL,
-  `Img` varchar(255) NOT NULL,
-  `ProductName` int(11) NOT NULL,
-  `ProductPrice` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `admin` (
+  `id` int(100) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `password` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`) VALUES
+(1, 'lamia@gmail.com', '1234');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Structure de la table `products`
 --
 
-CREATE TABLE `user` (
-  `id` int(10) NOT NULL DEFAULT 1,
-  `Name` varchar(40) NOT NULL,
-  `Email` varchar(40) NOT NULL,
-  `Pass` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `products` (
+  `id` int(100) NOT NULL,
+  `image` int(100) NOT NULL,
+  `productname` varchar(100) NOT NULL,
+  `productdesc` int(100) NOT NULL,
+  `price` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `user`
+-- Déchargement des données de la table `products`
 --
 
-INSERT INTO `user` (`id`, `Name`, `Email`, `Pass`) VALUES
-(1, 'Lamia', 'lamia@gmail.com', '1234');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+INSERT INTO `products` (`id`, `image`, `productname`, `productdesc`, `price`) VALUES
+(1, 0, 'USA', 0, 432);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

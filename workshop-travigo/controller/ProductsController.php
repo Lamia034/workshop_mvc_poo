@@ -1,6 +1,7 @@
 <?php 
+require_once '../model/product.php';
 
-class ProductsController{
+class ProductController{
 
 	public function getAllProducts(){
 		$products = Product::getAll();
