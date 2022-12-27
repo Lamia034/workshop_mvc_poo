@@ -1,9 +1,8 @@
 <?php
 require_once '../controller/ProductsController.php';
 // require_once '../alerts.php';
-
 $data = new ProductController();
-$product = $data->getOneProduct();
+$products = $data->getAllProducts();
 
 ?>
 
@@ -29,18 +28,7 @@ $product = $data->getOneProduct();
 
 <body>
         <div class="bkg"> 
-		<header>
-		<a href="#" id="logo"><img src="img/logo.png" class="logo-img" alt="travelling"></a>
-		<div class="bx bx-menu" id="menu-icon"></div>
 
-		<ul class="navbar">
-			<li><a href="home.php">Home</a></li>
-			<li><a href="tours.php">Tours</a></li>
-			<li><a href="about.php">About</a></li>
-			<li><a href="contact.php">Contact Us</a></li>
-			<li><a href="login.php">LogIn</a></li>
-		</ul>
-	</header>
 
 
 
@@ -63,9 +51,10 @@ $product = $data->getOneProduct();
 
 
       <td style="display:flex;justify-content:space-between;justify-content:space-around;">
-                    <form method="POST" class="me-1" action="update">
-                        <input type="hidden" name="id" value="<?php echo $product['idproduct'];?>">
-                        <button class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <form method="POST" class="me-1" action="update.php">
+                        <input type="hidden" name="idproduct" value="<?php echo $product['idproduct'];?>">
+                        <!-- <button type="submit" name="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></button> -->
+                        <input type="submit" name="submit" class="btn btn-sm btn-warning">
                         
                     </form>
                     <form method="POST" class="me-1" action="delete">

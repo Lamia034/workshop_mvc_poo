@@ -11,7 +11,7 @@ if(isset($_POST['idproduct'])){
 
 if(isset($_POST['submit'])){
     $exitProduct = new ProductController();
-    $exitProduct->updateProduct();
+    $prod = $exitProduct->getOneProduct();
 }
 
 ?>
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
 	</header> -->
 
     <h2 class="contacts">
-             Add Product:
+             update Product:
             </h2>
         <center>
     <div class="cartproduct">
@@ -63,16 +63,16 @@ if(isset($_POST['submit'])){
     <div class="form-group">
    
     <label for="productname">ProductName</label><br>
-    <input placeholder="ProductName" value="<?php echo $product['productname'] ?>" type="text" name="productname" class="form-control" >  <br>
-    <input type="hidden" name="idproduct" value="<?php echo $product['idproduct'];?>"> <br>
+    <input placeholder="ProductName" value="<?php echo $prod->productname; ?>" type="text" name="productname" class="form-control" >  <br>
+    <input type="hidden" name="idproduct" value="<?php echo $prod->idproduct;?>"> <br>
 
     <label for="price">Price</label><br>
-    <input value="<?php echo $product['price']; ?>" type="number" name="price" class="form-control" placeholder="price"><br>
+    <input value="<?php echo $prod->price; ?>" type="number" name="price" class="form-control" placeholder="price"><br>
 
     <label for="productdesc">Description</label><br>
-    <input value="<?php echo $product['productdesc']; ?>" type="text" name="productdesc" class="form-control" placeholder="product description"><br>
+    <input value="<?php echo $prod->productdesc; ?>" type="text" name="productdesc" class="form-control" placeholder="product description"><br>
 
-    <label for="img"  value="<?php echo $product['img']; ?>"> IMAGE</label><br>
+    <label for="img"  value="<?php echo $prod->img; ?>"> IMAGE</label><br>
 
 
     <input type="file" name="img" class="form-control" ><br>
@@ -84,6 +84,8 @@ if(isset($_POST['submit'])){
      
 </div>
 </center>
+
+
 
 </body>
 </html>

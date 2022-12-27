@@ -1,6 +1,7 @@
 <?php 
 require_once '../model/product.php';
 require_once '../database/DB.php';
+
 class ProductController{
 
 	public function getAllProducts(){
@@ -13,8 +14,8 @@ class ProductController{
 			$data = array(
 				'idproduct' => $_POST['idproduct']
 			);
-			$product = Product::getProduct($data);
-			return $product;
+			$produit = Product::getProduct($data);
+			return $produit;
 		}
 	}
 	public function findProducts(){
