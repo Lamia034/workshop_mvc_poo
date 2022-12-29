@@ -7,7 +7,6 @@ class product {
 		$stmt = DB::connect()->prepare('SELECT * FROM products');
 		$stmt->execute();
 		return $stmt->fetchAll();
-		// $stmt->close();
 		$stmt = null;
 	}
 
@@ -22,13 +21,14 @@ class product {
 		}catch(PDOException $ex){
 			echo 'erreur' . $ex->getMessage();
 		}
-	}
+	} 
 
 	static public function add($data){
 		$stmt = DB::connect()->prepare('INSERT INTO products (img,productname,productdesc,price)
 			VALUES (:img,:productname,:productdesc,:price)');
 		$stmt->bindParam(':img',$data['img']);
 		$stmt->bindParam(':productname',$data['productname']);
+		$stmt->bindParam(':productdesc',$data['productdesc']);
 		$stmt->bindParam(':price',$data['price']);
 
 		if($stmt->execute()){
@@ -36,37 +36,28 @@ class product {
 		}else{
 			return 'error';
 		}
-		// $stmt->close();
 		$stmt = null;
 	}
 	static public function update($data){
-		$stmt = DB::connect()->prepare('UPDATE products SET img=:img,productname=:productname,productdesc=productdesc,price=:price WHERE idproduct=:idproduct');
-		$stmt->bindParam(':idproduct',$data['idproduct']);
-		$stmt->bindParam(':img',$data['img']);
-		$stmt->bindParam(':productname',$data['productname']);
-		$stmt->bindParam(':productdesc',$data['productdesc']);
-		$stmt->bindParam(':price',$data['price']);
+		$stmt = DB::connect()->prepare('UPDATE products SET img=:img, productname=:productname,
+		productdesc=:productdesc, price=:price WHERE idproduct=:idproduct');
+		$stmt->bindParam(':img',$data['img'], PDO::PARAM_STR);
+		$stmt->bindParam(':productname',$data['productname'], PDO::PARAM_STR);
+		$stmt->bindParam(':productdesc',$data['productdesc'], PDO::PARAM_STR);
+		$pr = intval($data['price']);
+		$stmt->bindParam(':price' , $pr, PDO::PARAM_INT );
+		$stmt->bindParam(':idproduct' , $data['idproduct'], PDO::PARAM_INT );
+
+		// var_dump($data['price']);
+		// die();
 		if($stmt->execute()){
 			return 'ok';
 		}else{
 			return 'error';
 		}
-		// $stmt->close();
 		$stmt = null;
 	}
 
-	static public function delete($data){
-		$id = $data['id'];
-		try{
-			$query = 'DELETE FROM products WHERE id=:id';
-			$stmt = DB::connect()->prepare($query);
-			$stmt->execute(array(":id" => $id));
-			if($stmt->execute()){
-				return 'ok';
-			}
-		}catch(PDOException $ex){
-			echo 'erreur' . $ex->getMessage();
-		}
-	}
+
 
 }

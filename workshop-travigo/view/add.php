@@ -1,4 +1,10 @@
 <?php
+
+require_once '../model/product.php';
+require_once '../controller/ProductsController.php';
+require_once '../database/DB.php';
+
+
 if(isset($_POST['submit'])){
     $newProduct = new ProductController();
     $newProduct->addProduct();
@@ -6,20 +12,45 @@ if(isset($_POST['submit'])){
 
 ?>
 
-<div class="container mt-3">
-    <div class="card-header">ADD Product</div>
-   <a href="<?php echo BASE_URL;?>dashbord" class="btn btn-primary">HOME</a>
-   
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Travigo - Travel for everyone</title>
+	<meta name="description" content="travelling siteweb that assure you a safe tour all over the world">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+        <div class="bkg"> 
+
+    <div class="contacts">ADD Product</div>
+    <center>
+    <div class="cartproduct">
    <form method="POST" enctype="multipart/form-data">
     <div class="form-group">
-    <label for="ProductName">destination</label>
-    <input type="text" name="productname" class="form-control" placeholder="ProductName">   
-    <label for="Price">Price</label>
-    <input type="number" name="price" class="form-control" placeholder="Price">
-    <label for="ProductDesc">description</label>
-    <input type="text" name="productdesc" class="form-control" placeholder="ProductDescription">
-    <label for="image"> IMAGE</label>
-    <input type="file" name="file" class="form-control" >
+    <label for="productname">destination</label>
+    <input type="text" name="productname" class="form-control" placeholder="productname">   <br>
+    <label for="price">Price</label>
+    <input type="number" name="price" class="form-control" placeholder="Price"><br>
+    <label for="productdesc">description</label>
+    <input type="text" name="productdesc" class="form-control" placeholder="ProductDescription"><br>
+    <label for="img"> IMAGE</label>
+    <input type="file" name="file" class="form-control" ><br>
     <button type="submit" class="form-control btn btn-primary" name="submit">SUBMIT</button>
     
     </div>
@@ -28,3 +59,6 @@ if(isset($_POST['submit'])){
     
        
 </div>
+</center>
+</body>
+</html>

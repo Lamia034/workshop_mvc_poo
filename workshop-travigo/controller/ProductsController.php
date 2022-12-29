@@ -18,13 +18,6 @@ class ProductController{
 			return $produit;
 		}
 	}
-	public function findProducts(){
-		if(isset($_POST['search'])){
-			$data = array('search' => $_POST['search']);
-		}
-		$products = product::searchproducts($data);
-		return $products;
-	} 
 	
 
 	public function addProduct(){
@@ -32,6 +25,7 @@ class ProductController{
 			$data = array(
 				'img' => $_POST['img'],
 				'productname' => $_POST['productname'],
+				'productdesc' => $_POST['productdesc'],
 				'price' => $_POST['price'],
 			);
 			$result = product::add($data);
@@ -46,7 +40,7 @@ class ProductController{
 
 	public function updateProduct(){
 	
-			if(isset($_POST['submit'])){
+			if(isset($_POST['update'])){
        $data = array(
 				'idproduct' => $_POST['idproduct'],
 				'productname' => $_POST['productname'],
@@ -57,25 +51,14 @@ class ProductController{
 				 $result = Product::update($data);
 				if($result === 'ok'){
 
-					session::set('success','modified');
+				 session::set('success','modified');
 				  Redirect::to('home.php');
 				 }else{
 				echo $result;
 			}
 		}
 	}
-	public function deleteProduct(){
-		if(isset($_POST['id'])){
-			$data['id'] = $_POST['id'];
-			$result = Product::delete($data);
-			if($result === 'ok'){
-				Session::set('success','product deleted');
-				Redirect::to('home.php');
-			}else{
-				echo $result;
-			}
-		}
-	}
+
 
 }
 

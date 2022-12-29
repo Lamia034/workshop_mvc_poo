@@ -14,6 +14,11 @@ if(isset($_POST['submit'])){
     $prod = $exitProduct->getOneProduct();
 }
 
+if(isset($_POST['update'])){
+    $exitProduct = new ProductController();
+        $update =  $exitProduct->updateProduct();
+}
+
 ?>
 
 
@@ -76,7 +81,8 @@ if(isset($_POST['submit'])){
 
 
     <input type="file" name="img" class="form-control" ><br>
-    <button type="submit" class="form-control btn btn-primary" name="submit">update</button>
+    
+    <button  type="submit" class="form-control btn btn-primary" name="update" value="submit">update</button>
     </div>
 
    </form>
@@ -84,6 +90,8 @@ if(isset($_POST['submit'])){
      
 </div>
 </center>
+
+
 
 
 
