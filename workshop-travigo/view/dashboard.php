@@ -53,19 +53,19 @@ $products = $data->getAllProducts();
       <td style="display:flex;justify-content:space-between;justify-content:space-around;">
                     <form method="POST" class="me-1" action="update.php">
                         <input type="hidden" name="idproduct" value="<?php echo $product['idproduct'];?>">
-                        <!-- <button type="submit" name="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></button> -->
-                        <input type="submit" name="submit" class="btn btn-sm btn-warning">
+                        <button type="submit" name="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+
                         
                     </form>
-                    <form method="POST" class="me-1" action="delete">
-                        <input type="hidden" name="id" value="<?php echo $product['idproduct'];?>">
+                    <form method="POST" class="me-1" action="delete.php">
+                        <input type="hidden" name="idproduct" value="<?php echo $product['idproduct'];?>">
                         <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                     </form>
                     
                 </td>
                 <td>
-                <form method="POST" class="me-1" action="add">
-                        <input type="hidden" name="id" value="<?php echo $product['idproduct'];?>">
+                <form method="POST" class="me-1" action="add.php">
+                        <input type="hidden" name="idproduct" value="<?php echo $product['idproduct'];?>">
                         <button class="btn btn-sm btn-danger"><i class="fa-solid fa-plus"></i></button>
                     </form>
     </td>

@@ -24,12 +24,16 @@ class product {
 	} 
 
 	static public function add($data){
-		$stmt = DB::connect()->prepare('INSERT INTO products (img,productname,productdesc,price)
-			VALUES (:img,:productname,:productdesc,:price)');
-		$stmt->bindParam(':img',$data['img']);
-		$stmt->bindParam(':productname',$data['productname']);
-		$stmt->bindParam(':productdesc',$data['productdesc']);
-		$stmt->bindParam(':price',$data['price']);
+		$stmt = DB::connect()->prepare('INSERT INTO products (idproduct,img,productname,productdesc,price)
+			VALUES (NOT NULL,:img,:productname,:productdesc,:price)');
+		$str = srtval($data['img']);
+		$stmt->bindParam(':img',$str,PDO::PARAM_STR);
+		// $stmt->bindparam(':img',$data['img'],PDO::PARAM_STR);
+		$stmt->bindParam(':productname',$data['productname'], PDO::PARAM_STR);
+		$stmt->bindParam(':productdesc',$data['productdesc'], PDO::PARAM_STR);
+		$pr = intval($data['price']);
+		$stmt->bindParam(':price' , $pr, PDO::PARAM_INT );
+	
 
 		if($stmt->execute()){
 			return 'ok';
@@ -56,6 +60,22 @@ class product {
 			return 'error';
 		}
 		$stmt = null;
+	}
+
+
+
+	static public function delete($data){
+		$idproduct = $data['idproduct'];
+		try{
+			$query = 'DELETE FROM products WHERE idproduct=:idproduct';
+			$stmt = DB::connect()->prepare($query);
+			$stmt->execute(array(":idproduct" => $idproduct));
+			if($stmt->execute()){
+				return 'ok';
+			}
+		}catch(PDOException $ex){
+			echo 'erreur' . $ex->getMessage();
+		}
 	}
 
 

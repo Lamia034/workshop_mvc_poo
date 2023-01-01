@@ -1,6 +1,8 @@
 <?php 
 require_once '../model/product.php';
 require_once '../database/DB.php';
+require_once '../app/classes/session.php';
+require_once '../app/classes/Redirect.php';
 
 class ProductController{
 
@@ -21,13 +23,16 @@ class ProductController{
 	
 
 	public function addProduct(){
-		if(isset($_POST['submit'])){
+		if(isset($_POST['add']) && isset($_POST['img']) ){
 			$data = array(
 				'img' => $_POST['img'],
 				'productname' => $_POST['productname'],
 				'productdesc' => $_POST['productdesc'],
 				'price' => $_POST['price'],
+				
 			);
+			
+		
 			$result = product::add($data);
 			if($result === 'ok'){
 				session::set('success','Product added');
@@ -59,6 +64,20 @@ class ProductController{
 		}
 	}
 
+
+
+	public function deleteProduct(){
+		if(isset($_POST['idproduct'])){
+			$data['idproduct'] = $_POST['idproduct'];
+			$result = Product::delete($data);
+			if($result === 'ok'){
+				Session::set('success','product deleted');
+				// Redirect::to('home.php');
+			}else{
+				echo $result;
+			}
+		}
+	}
 
 }
 
