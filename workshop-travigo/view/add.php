@@ -5,7 +5,7 @@ require_once '../controller/ProductsController.php';
 require_once '../database/DB.php';
 
 
-if(isset($_POST['add']) && isset($_POST['img'])){
+if(isset($_POST['add'])){
     $newProduct = new ProductController();
     $newProduct->addProduct();
 }
@@ -50,7 +50,7 @@ if(isset($_POST['add']) && isset($_POST['img'])){
     <label for="productdesc">description</label>
     <input type="text" name="productdesc" class="form-control" placeholder="ProductDescription"><br>
     <label for="img"> IMAGE</label>
-    <input type="file" name="img" class="form-control" value="img"><br>
+    <input type="file" name="img" class="form-control" ><br>
     <button type="submit" class="form-control btn btn-primary" name="add" value="add">SUBMIT</button>
     
     </div>

@@ -54,7 +54,7 @@ $products = $data->getAllProducts();
                     <form method="POST" class="me-1" action="update.php">
                         <input type="hidden" name="idproduct" value="<?php echo $product['idproduct'];?>">
                         <button type="submit" name="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-
+                        <!-- <input type="submit" name="submit" class="btn btn-sm btn-warning"> -->
                         
                     </form>
                     <form method="POST" class="me-1" action="delete.php">

@@ -1,5 +1,3 @@
-
-
 <?php
 
 require_once '../controller/ProductsController.php';

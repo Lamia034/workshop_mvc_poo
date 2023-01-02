@@ -1,4 +1,10 @@
+<?php 
+require_once '../controller/ProductsController.php';
 
+$data = new ProductController();
+$products = $data->getAllProducts();
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -42,36 +48,25 @@
 
 	<!--container--->
 	<section class="container">
+	
 		<div class="text">
 			<h2>Start Your Vacation <br> with Lots of Services!</h2>
 		</div>
 
 		<div class="row-items">
+		<?php foreach($products as $product):?>
 			<div class="container-box">
 				<div class="container-img">
-					<img src="img/trip1.png" alt="travel">
+					<img src="img/<?php echo $product['img'];?>" alt="travel">
 				</div>
-				<h4>Ship Cruises</h4>
-				<p>150 Properties</p>
+				<h4><?php echo $product['productname'];?></h4>
+				<p><?php echo $product['price'];?></p>
+				<p><?php echo $product['productdesc'];?></p>
 			</div>
 
-			<div class="container-box">
-				<div class="container-img">
-					<img src="img/trip2.png" alt="travelling servises">
-				</div>
-				<h4>Food Tours</h4>
-				<p>150 Properties</p>
-			</div>
-
-			<div class="container-box">
-				<div class="container-img">
-					<img src="img/trip3.png">
-				</div>
-				<h4>Summer Rest</h4>
-				<p>150 Properties</p>
-			</div>
-
+			<?php endforeach; ?>
 		</div>
+		
 	</section>
 
 	<!--Package section--->
